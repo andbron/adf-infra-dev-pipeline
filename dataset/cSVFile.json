@@ -1,0 +1,19 @@
+{
+	"name": "cSVFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "myaladfstor001",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "testData01.csv",
+				"container": "001-from"
+			}
+		},
+		"schema": []
+	}
+}
