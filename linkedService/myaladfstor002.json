@@ -1,0 +1,11 @@
+{
+	"name": "myaladfstor002",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://myaladfstor002.blob.core.windows.net",
+			"accountKind": "StorageV2"
+		}
+	}
+}
