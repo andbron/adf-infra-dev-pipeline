@@ -1,20 +1,29 @@
 {
-	"name": "cSVFile",
+	"name": "cSVFileSource",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "myaladfstor001",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "Excel",
+		"type": "DelimitedText",
 		"typeProperties": {
-			"sheetName": "testData01",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "testData01.csv",
 				"container": "001-from"
-			}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
 	}
 }
