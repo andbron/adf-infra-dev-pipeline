@@ -1,0 +1,9 @@
+{
+	"name": "my-al-adf-dev",
+	"location": "australiaeast",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d5626178-41d5-4736-9833-1cf4596d2998",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

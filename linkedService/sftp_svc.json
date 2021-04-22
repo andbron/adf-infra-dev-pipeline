@@ -1,0 +1,23 @@
+{
+	"name": "sftp_svc",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Sftp",
+		"typeProperties": {
+			"host": "20.193.45.127",
+			"port": 22,
+			"skipHostKeyValidation": true,
+			"authenticationType": "SshPublicKey",
+			"userName": "aladmin",
+			"privateKeyContent": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "akv_svc",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "secret-sftp"
+			}
+		}
+	}
+}

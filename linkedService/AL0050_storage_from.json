@@ -1,0 +1,11 @@
+{
+	"name": "AL0050_storage_from",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "https://myaladfstor001.blob.core.windows.net/"
+		},
+		"annotations": []
+	}
+}
