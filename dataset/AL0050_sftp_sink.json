@@ -1,0 +1,18 @@
+{
+	"name": "AL0050_sftp_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sftp_svc",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"folderPath": "/sftpfileshare01"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
