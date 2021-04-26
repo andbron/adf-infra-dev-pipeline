@@ -1,28 +1,29 @@
-provider "azurerm" {
-
-  features {}
+locals {
+  assetrgname = var.assetrgname
+  mctadfrgname = var.mctadfrgname
+  akvname = var.akvname
+  mctadfname = var.mctadfname
+  assetname = var.assetname
+  akvsftpsecretkey = var.akvsftpsecretkey
+  storageuri = var.storageuri
+  adflssftp = var.adflssftp
+  adflssftphost = var.adflssftphost
+  adfdscontainername = var.adfdscontainername
+  adfdssftpfolderpath = var.adfdssftpfolderpath
+}
+module mctadf-onboarding {
+  source         = "../../Module"
+  assetrgname = local.assetrgname
+  mctadfrgname = local.mctadfrgname
+  akvname = local.akvname
+  mctadfname = local.mctadfname
+  assetname = local.assetname
+  akvsftpsecretkey = local.akvsftpsecretkey
+  storageuri = local.storageuri
+  adflssftp = local.adflssftp
+  adflssftphost = local.adflssftphost
+  adfdscontainername = local.adfdscontainername
+  adfdssftpfolderpath = local.adfdssftpfolderpath
 }
 
-data "azurerm_resource_group" "asset-rgname" {
-  name = var.assetrgname
-}
 
-data "azurerm_resource_group" "mctadf-rgname" {
-  name = var.mctadfrgname
-}
-
-data "azurerm_data_factory" "mctadf" {
-  name                = var.mctadfname
-  resource_group_name = var.mctadfrgname
-}
-
-data "azurerm_key_vault" "mctadfakv" {
-  name                = var.akvname
-  resource_group_name = var.mctadfrgname
-}
-
-resource "azurerm_key_vault_secret" "sftp" {
-  name         = "${var.assetname}-${var.akvsftpsecretkey}"
-  value        = base64encode(file("ssh_sftp_rsa+key"))
-  key_vault_id = data.azurerm_key_vault.mctadfakv.id
-}

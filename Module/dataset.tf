@@ -6,6 +6,10 @@ resource "azurerm_data_factory_dataset_azure_blob" "asset_backup" {
 
   path     = var.adfdscontainername
   filename = "*"
+
+  depends_on = [
+    azurerm_data_factory_linked_service_azure_blob_storage.backup_storage
+  ]
 }
 
 resource "azurerm_resource_group_template_deployment" "adfdssftpsvc" {
@@ -26,5 +30,9 @@ resource "azurerm_resource_group_template_deployment" "adfdssftpsvc" {
       value = var.adfdssftpfolderpath
     }    
   })
-  template_content = file("dataset-sftpsvc.json")
+  template_content = file("../../Module/dataset-sftpsvc.json")
+
+  depends_on = [
+    azurerm_resource_group_template_deployment.adflssftpsvc
+  ]
 }

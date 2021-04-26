@@ -9,8 +9,8 @@
 state.tfplan
 *.hcl
 
-#ssh private key
-ssh_sftp_rsa+key
+#ssh private key - any directory
+**/ssh_sftp_rsa+key
 
 # Crash log files
 crash.log

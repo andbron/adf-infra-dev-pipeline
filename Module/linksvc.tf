@@ -27,7 +27,7 @@ resource "azurerm_resource_group_template_deployment" "adflssftpsvc" {
       value = var.akvsftpsecretkey
     }      
   })
-  template_content = file("linksvc-sftpsvc.json")
+  template_content = file("../../Module/linksvc-sftpsvc.json")
   depends_on = [
     azurerm_key_vault_secret.sftp
   ]

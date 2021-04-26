@@ -19,7 +19,7 @@ resource "azurerm_resource_group_template_deployment" "adfpipeline" {
       value = var.adfdscontainername
     }                
   })
-  template_content = file("pipeline.json")
+  template_content = file("../../Module/pipeline.json")
 
   tags = {
     trigger = "002"

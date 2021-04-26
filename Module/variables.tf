@@ -1,54 +1,54 @@
 variable "assetrgname" {
   type    = string
-  default = "my-al-AL0020-rg"
+  description = "Asset Resource Group Name"
 }
 
 variable "mctadfrgname" {
   type    = string
-  default = "my-al-adf-dev-rg"
+  description = "MCTADF Resource Group Name"
 }
 
 variable "akvname" {
   type    = string
-  default = "myal-adfkeyvault"
+  description = "MCTADF Key Vault hosting SSH private key"
 }
 
 variable "mctadfname" {
   type    = string
-  default = "my-al-adf-dev"
+  description = "MCTADF Data Factory Name"
 }
 
 variable "assetname" {
   type    = string
-  default = "al0020"
+  description = "Asset Id - MUST USE LOWERCASE"
 }
 
 variable "akvsftpsecretkey" {
   type    = string
-  default = "secret-sftp"
+  description = "Name of KV SFTP secret"
 }
 
 variable "storageuri" {
   type    = string
-  default = "https://myal0020stor01.blob.core.windows.net/"
+  description = "Storage Account Endpoint hosting Backups"
 }
 
 variable "adflssftp" {
   type    = string
-  default = "sftp_svc"
+  description = "ADF Linked Service - SFTP"
 }
 
 variable "adflssftphost" {
   type    = string
-  default = "20.193.45.127"
+  description = "SFTP Hostname"
 }
 
 variable "adfdscontainername" {
   type    = string
-  default = "backup"
+  description = "Asset Storage Account Container Name"
 }
 
 variable "adfdssftpfolderpath" {
   type    = string
-  default = "/sftpfileshare01"
+  description = "SFTP Folder Path"
 }
