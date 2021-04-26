@@ -26,7 +26,7 @@
 	"variables": {},
 	"resources": [
 		{
-            "name": "[concat(parameters('factoryName'), '/', parameters('linksvc_sftp'))]",
+            "name": "[concat(parameters('factoryName'), '/', parameters('assetName'), '_', parameters('linksvc_sftp'))]",
 			"type": "Microsoft.DataFactory/factories/linkedservices",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -44,7 +44,7 @@
 							"referenceName": "akv_svc",
 							"type": "LinkedServiceReference"
 						},
-						"secretName": "[concat(parameters('assetName'), parameters('linksvc_sftp_secret_name'))]"
+						"secretName": "[concat(parameters('assetName'), '-', parameters('linksvc_sftp_secret_name'))]"
 					}
 				}
 			}

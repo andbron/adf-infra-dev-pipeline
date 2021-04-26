@@ -1,6 +1,6 @@
-resource "azurerm_resource_group_template_deployment" "AL0020-pipeline" {
-  name                = "deploy_pipeline_AL0020"
-  resource_group_name = azurerm_resource_group.adf-dev.name
+resource "azurerm_resource_group_template_deployment" "adfpipeline" {
+  name                = "${var.assetname}-Terraform.Deployment-adfpipeline"
+  resource_group_name = data.azurerm_resource_group.mctadf-rgname.name
   deployment_mode     = "Incremental"
   parameters_content = jsonencode({
     "factoryName" = {
@@ -9,14 +9,17 @@ resource "azurerm_resource_group_template_deployment" "AL0020-pipeline" {
     "assetName" = {
       value = var.assetname
     },
-    "sftp_svc" = {
+    "linksvc_sftp" = {
       value = var.adflssftp
     },
-    "linksvc_sftp_folderPath" = {
+    "dataset_sftp_folderPath" = {
       value = var.adfdssftpfolderpath
-    }          
+    },
+    "dataset_source_container" = {
+      value = var.adfdscontainername
+    }                
   })
-  template_content = file("AL0020-pipeline.json")
+  template_content = file("pipeline.json")
 
   tags = {
     trigger = "002"

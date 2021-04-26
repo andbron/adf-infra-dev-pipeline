@@ -48,7 +48,7 @@ variable "mctadfname" {
 
 variable "assetname" {
   type    = string
-  default = "AL0020"
+  default = "al0020"
 }
 
 variable "akvsftpsecretkey" {
@@ -58,7 +58,7 @@ variable "akvsftpsecretkey" {
 
 variable "storageuri" {
   type    = string
-  default = "https://myaladfstor001.blob.core.windows.net/"
+  default = "https://myal0020stor01.blob.core.windows.net/"
 }
 
 variable "adflssftp" {
@@ -73,7 +73,7 @@ variable "adflssftphost" {
 
 variable "adfdscontainername" {
   type    = string
-  default = "001-from"
+  default = "backup"
 }
 
 variable "adfdssftpfolderpath" {

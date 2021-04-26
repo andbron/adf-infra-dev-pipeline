@@ -1,20 +1,14 @@
-
-
-
 resource "azurerm_data_factory_linked_service_azure_blob_storage" "backup_storage" {
   name                = "${var.assetname}_blob_backup"
-  resource_group_name = data.azurerm_resource_group.mctadf-rgname.id
-  data_factory_name   = azurerm_data_factory.adf-dev.name
+  resource_group_name = data.azurerm_resource_group.mctadf-rgname.name
+  data_factory_name   = data.azurerm_data_factory.mctadf.name
   service_endpoint   = var.storageuri
   use_managed_identity = true
 }
 
-
-
-
 resource "azurerm_resource_group_template_deployment" "adflssftpsvc" {
-  name                = "deploy_sftpsvc"
-  resource_group_name = data.azurerm_resource_group.mctadf-rgname.id
+  name                = "${var.assetname}-Terraform.Deployment-adflssftpsvc"
+  resource_group_name = data.azurerm_resource_group.mctadf-rgname.name
   deployment_mode     = "Incremental"
   parameters_content = jsonencode({
     "factoryName" = {
@@ -33,7 +27,10 @@ resource "azurerm_resource_group_template_deployment" "adflssftpsvc" {
       value = var.akvsftpsecretkey
     }      
   })
-  template_content = file("AL0020-linksvc-sftpsvc.json")
+  template_content = file("linksvc-sftpsvc.json")
+  depends_on = [
+    azurerm_key_vault_secret.sftp
+  ]
 }
 
 

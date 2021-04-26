@@ -24,5 +24,5 @@ data "azurerm_key_vault" "mctadfakv" {
 resource "azurerm_key_vault_secret" "sftp" {
   name         = "${var.assetname}-${var.akvsftpsecretkey}"
   value        = base64encode(file("ssh_sftp_rsa+key"))
-  key_vault_id = dat.azurerm_key_vault.mctadfakv.id
+  key_vault_id = data.azurerm_key_vault.mctadfakv.id
 }

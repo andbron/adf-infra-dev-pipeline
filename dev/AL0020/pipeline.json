@@ -14,15 +14,19 @@
       "type": "String",
         "metadata": "SFTP Service Name"      
     },
-    "linksvc_sftp_folderPath": {
+    "dataset_sftp_folderPath": {
         "type": "String",
         "metadata": "ADF Linked Service SFTP Folder Path Name"
-    }      
+    },
+    "dataset_source_container": {
+        "type": "String",
+        "metadata": "ADF Linked Service SFTP Folder Path Name"
+    }           
   },
   "variables": {
     "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]",
-    "storage_blob_from": "[variables('storage_blob_from')]",
-    "asset_sftp_service": "[variables('asset_sftp_service')]"
+    "storage_blob_from": "[concat(parameters('assetName'), '_blob_', parameters('dataset_source_container'))]",
+    "asset_sftp_service": "[concat(parameters('assetName'), '_', parameters('linksvc_sftp'))]"
   },
   "resources": [
     {
@@ -75,47 +79,6 @@
           }
         ],
         "annotations": []
-      },
-      "dependsOn": [
-        "[concat(variables('factoryId'), '/datasets/', variables('storage_blob_from'))]",
-        "[concat(variables('factoryId'), '/datasets/', variables('asset_sftp_service'))]"
-      ]
-    },
-    {
-      "name": "[concat(parameters('factoryName'), variables('storage_blob_from'))]",
-      "type": "Microsoft.DataFactory/factories/datasets",
-      "apiVersion": "2018-06-01",
-      "properties": {
-        "linkedServiceName": {
-          "referenceName": "[concat(parameters('factoryName'), variables('storage_blob_from'))]",
-          "type": "LinkedServiceReference"
-        },
-        "annotations": [],
-        "type": "AzureBlob",
-        "typeProperties": {
-          "fileName": "testData04.csv",
-          "folderPath": "001-from"
-        }
-      },
-      "dependsOn": []
-    },
-    {
-      "name": "[concat(parameters('factoryName'), '/', variables('asset_sftp_service'))]",
-      "type": "Microsoft.DataFactory/factories/datasets",
-      "apiVersion": "2018-06-01",
-      "properties": {
-        "linkedServiceName": {
-          "referenceName": "[parameters('linksvc_sftp')]",
-          "type": "LinkedServiceReference"
-        },
-        "annotations": [],
-        "type": "Binary",
-        "typeProperties": {
-          "location": {
-            "type": "SftpLocation",
-            "folderPath": "[parameters('linksvc_sftp_folderPath')]"
-          }
-        }
       },
       "dependsOn": []
     }
