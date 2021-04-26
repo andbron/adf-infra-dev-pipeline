@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+        "factoryName": {
+            "type": "String",
+            "metadata": "Data Factory name"
+        },
+        "assetName": {
+            "type": "String",
+            "metadata": "Asset Name"
+        },
+        "linksvc_sftp": {
+            "type": "String",
+            "metadata": "ADF Linked Service SFTP Name"
+        },
+        "linksvc_sftp_host": {
+            "type": "String",
+            "metadata": "ADF Linked Service SFTP Host"
+        },
+        "linksvc_sftp_secret_name": {
+            "type": "String",
+            "metadata": "ADF Linked Service SFTP Host"
+        }							
+	},
+	"variables": {},
+	"resources": [
+		{
+            "name": "[concat(parameters('factoryName'), '/', parameters('linksvc_sftp'))]",
+			"type": "Microsoft.DataFactory/factories/linkedservices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "[parameters('linksvc_sftp_host')]",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "SshPublicKey",
+					"userName": "aladmin",
+					"privateKeyContent": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "akv_svc",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[concat(parameters('assetName'), parameters('linksvc_sftp_secret_name'))]"
+					}
+				}
+			}
+		}
+    ],
+    "outputs": {}    
+}
