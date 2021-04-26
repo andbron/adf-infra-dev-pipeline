@@ -30,7 +30,7 @@ variable "akvsftpsecretkey" {
 
 variable "storageuri" {
   type    = string
-  default = "https://myal0020stor01t.blob.core.windows.net/"
+  default = "https://myal0020stor01t.file.core.windows.net/"
 }
 
 variable "adflssftp" {
